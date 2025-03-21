@@ -20,6 +20,5 @@ public class Cliente implements Serializable {
 
     private String nombre;
     private String apellido;
-    private String cedula;
     private boolean aceptaPolicies;
 }

@@ -21,5 +21,4 @@ public class Empleado implements Serializable {
 
     private String nombre;
     private String apellido;
-    private String usr_id;
 }

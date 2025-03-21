@@ -35,5 +35,5 @@ public class Calificacion  implements Serializable {
     private Empleado empleado;
     private String observacion;
     private CalificacionEnum calificacion;
-
+    private Integer rating;
 }
