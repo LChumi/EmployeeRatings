@@ -2,7 +2,6 @@ package com.cumpleanos.calificaciones.persistence.entities;
 
 import com.cumpleanos.calificaciones.utils.CalificacionEnum;
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -15,7 +14,6 @@ import java.time.LocalTime;
 import java.util.Date;
 
 @Data
-@Builder
 @Document(collection = "calificacion")
 public class Calificacion  implements Serializable {
     @Serial
@@ -26,14 +24,16 @@ public class Calificacion  implements Serializable {
     private String id;
 
     @CreatedDate
+    @Setter(AccessLevel.NONE)
     private Date fecha;
 
     @CreatedDate
+    @Setter(AccessLevel.NONE)
     private LocalTime hora;
 
     private Cliente cliente;
     private Empleado empleado;
     private String observacion;
     private CalificacionEnum calificacion;
-    private Integer rating;
+    private Short rating;
 }

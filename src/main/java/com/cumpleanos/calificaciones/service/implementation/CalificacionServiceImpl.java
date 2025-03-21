@@ -3,7 +3,7 @@ package com.cumpleanos.calificaciones.service.implementation;
 import com.cumpleanos.calificaciones.persistence.entities.Calificacion;
 import com.cumpleanos.calificaciones.persistence.entities.Empleado;
 import com.cumpleanos.calificaciones.persistence.repository.CalificacionRepository;
-import com.cumpleanos.calificaciones.service.interfaces.CalificacionService;
+import com.cumpleanos.calificaciones.service.interfaces.ICalificacionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
-public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, String> implements CalificacionService {
+public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, String> implements ICalificacionService {
 
     private final CalificacionRepository repository;
 
