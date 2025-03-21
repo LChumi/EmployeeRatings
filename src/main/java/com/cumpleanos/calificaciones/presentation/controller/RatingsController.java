@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -22,7 +23,7 @@ public class RatingsController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Calificacion>> getAll() {
-        List<Calificacion> calificaciones = service.findAll();
+        List<Calificacion> calificaciones = service.findAllOrderByFechaDesc();
         return ResponseEntity.ok(calificaciones);
     }
 
@@ -46,5 +47,16 @@ public class RatingsController {
         }
         service.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<List<Calificacion>> filtros(
+            @RequestParam(required = false) String empleadoId,
+            @RequestParam(required = false) Short rating,
+            @RequestParam(required = false) LocalDate fechaInicio,
+            @RequestParam(required = false) LocalDate fechaFin
+    ){
+        List<Calificacion> calificaciones = service.listByFilters(empleadoId, rating, fechaInicio, fechaFin);
+        return ResponseEntity.ok(calificaciones);
     }
 }
