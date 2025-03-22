@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface ICalificacionService extends IGenericService<Calificacion, String> {
 
+    Calificacion saved(Calificacion calificacion);
+
     List<Calificacion> findAllOrderByFechaDesc();
 
     List<Calificacion> listByEmpleado(Empleado empleado);

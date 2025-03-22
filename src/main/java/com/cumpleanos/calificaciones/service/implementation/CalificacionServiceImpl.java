@@ -19,11 +19,26 @@ import java.util.List;
 public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, String> implements ICalificacionService {
 
     private final CalificacionRepository repository;
+    private final CrudTxtClientServiceImpl crudTxtClient;
     private final CalificacionRepositoryCustom customRepository;
 
     @Override
     public CrudRepository<Calificacion, String> getRepository() {
         return repository;
+    }
+
+    @Override
+    public Calificacion saved(Calificacion c) {
+        if (c.getCliente() == null && null != c.getEmpleado()) {
+            throw new IllegalArgumentException("El cliente no puede ser nulo");
+        } else if (c.getCliente().getNombre() == null){
+            String nombre = crudTxtClient.getCliente(c.getId(), "C");
+            if (nombre == null || nombre.isEmpty()){
+                nombre = "";
+            }
+            c.getCliente().setNombre(nombre);
+        }
+        return repository.save(c);
     }
 
     @Override
