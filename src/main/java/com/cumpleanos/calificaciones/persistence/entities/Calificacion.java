@@ -35,7 +35,7 @@ public class Calificacion  implements Serializable {
     private Cliente cliente;
     private Empleado empleado;
     private String observacion;
-    private CalificacionEnum calificacion;
+    private String calificacion;
     private Short rating;
 
     public Calificacion() {
