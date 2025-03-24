@@ -7,7 +7,6 @@ import com.cumpleanos.calificaciones.persistence.repository.CalificacionReposito
 import com.cumpleanos.calificaciones.service.interfaces.ICalificacionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,17 +28,18 @@ public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, St
 
     @Override
     public Calificacion saved(Calificacion c) {
-        if (c.getCliente() == null && null != c.getEmpleado()) {
+        if (c.getCliente() == null) {
             throw new IllegalArgumentException("El cliente no puede ser nulo");
-        } else if (c.getCliente().getNombre() == null){
-            String nombre = crudTxtClient.getCliente(c.getId(), "C");
-            if (nombre == null || nombre.isEmpty()){
-                nombre = "";
-            }
-            c.getCliente().setNombre(nombre);
         }
+
+        if (c.getCliente().getNombre() == null || c.getCliente().getNombre().isEmpty()) {
+            String nombre = crudTxtClient.getCliente(c.getCliente().getId(), "C");
+            c.getCliente().setNombre(nombre != null ? nombre : "");
+        }
+
         return repository.save(c);
     }
+
 
     @Override
     public List<Calificacion> findAllOrderByFechaDesc() {

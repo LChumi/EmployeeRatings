@@ -1,0 +1,7 @@
+server:
+  port: 7568
+spring:
+  application:
+    name: calificaciones
+  config:
+    import: classpath:/mongo_secure.yml

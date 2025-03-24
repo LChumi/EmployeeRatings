@@ -35,7 +35,7 @@ public class RatingsController {
 
     @PostMapping("/save")
     public ResponseEntity<Calificacion> save(@RequestBody Calificacion calificacion) {
-        Calificacion cal =service.save(calificacion);
+        Calificacion cal =service.saved(calificacion);
         return ResponseEntity.ok(cal);
     }
 
