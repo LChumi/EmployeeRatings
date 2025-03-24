@@ -1,7 +1,6 @@
 package com.cumpleanos.calificaciones.presentation.controller;
 
 import com.cumpleanos.calificaciones.persistence.entities.Calificacion;
-import com.cumpleanos.calificaciones.persistence.entities.Empleado;
 import com.cumpleanos.calificaciones.service.interfaces.ICalificacionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

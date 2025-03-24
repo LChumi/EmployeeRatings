@@ -10,6 +10,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -42,7 +44,24 @@ public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, St
 
     @Override
     public List<Calificacion> findAllOrderByFechaDesc() {
-        return repository.findAllByOrderByFechaDesc();
+        // Obtener el primer día del mes actual
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date startDate = calendar.getTime();
+
+        // Obtener el último día del mes actual
+        calendar.add(Calendar.MONTH, 1);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        Date endDate = calendar.getTime();
+
+        return repository.findAllByFechaBetweenOrderByFechaDesc(startDate, endDate);
     }
 
     @Override
