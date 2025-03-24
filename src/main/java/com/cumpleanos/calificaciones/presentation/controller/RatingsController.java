@@ -27,8 +27,8 @@ public class RatingsController {
         return ResponseEntity.ok(calificaciones);
     }
 
-    @GetMapping("/all/employee")
-    public ResponseEntity<List<Calificacion>> getAllEmployee(@RequestBody Empleado empleado) {
+    @GetMapping("/all/employee/{empleado}")
+    public ResponseEntity<List<Calificacion>> getAllEmployee(@PathVariable String empleado) {
         List<Calificacion> calificaciones = service.listByEmpleado(empleado);
         return  ResponseEntity.ok(calificaciones);
     }

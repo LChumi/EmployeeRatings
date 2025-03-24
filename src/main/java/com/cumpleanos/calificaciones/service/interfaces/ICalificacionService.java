@@ -12,7 +12,7 @@ public interface ICalificacionService extends IGenericService<Calificacion, Stri
 
     List<Calificacion> findAllOrderByFechaDesc();
 
-    List<Calificacion> listByEmpleado(Empleado empleado);
+    List<Calificacion> listByEmpleado(String empleado);
 
     List<Calificacion> listByFilters(String empleadoId, Short rating, LocalDate fechaInicio, LocalDate fechaFin);
 }

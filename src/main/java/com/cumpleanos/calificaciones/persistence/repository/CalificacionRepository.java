@@ -12,6 +12,6 @@ public interface CalificacionRepository extends MongoRepository<Calificacion, St
 
     List<Calificacion> findAllByOrderByFechaDesc();
 
-    List<Calificacion> findByEmpleadoOrderByFechaDesc(Empleado empleado);
+    List<Calificacion> findByEmpleado_IdOrderByFechaDesc(String empleado);
 
 }

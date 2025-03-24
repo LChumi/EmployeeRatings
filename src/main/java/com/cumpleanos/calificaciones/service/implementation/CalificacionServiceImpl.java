@@ -1,7 +1,6 @@
 package com.cumpleanos.calificaciones.service.implementation;
 
 import com.cumpleanos.calificaciones.persistence.entities.Calificacion;
-import com.cumpleanos.calificaciones.persistence.entities.Empleado;
 import com.cumpleanos.calificaciones.persistence.repository.CalificacionRepository;
 import com.cumpleanos.calificaciones.persistence.repository.CalificacionRepositoryCustom;
 import com.cumpleanos.calificaciones.service.interfaces.ICalificacionService;
@@ -36,7 +35,7 @@ public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, St
             String nombre = crudTxtClient.getCliente(c.getCliente().getId(), "C");
             c.getCliente().setNombre(nombre != null ? nombre : "");
         }
-
+        c.registerHour();
         return repository.save(c);
     }
 
@@ -47,8 +46,8 @@ public class CalificacionServiceImpl extends GenericServiceImpl<Calificacion, St
     }
 
     @Override
-    public List<Calificacion> listByEmpleado(Empleado empleado) {
-        return repository.findByEmpleadoOrderByFechaDesc(empleado);
+    public List<Calificacion> listByEmpleado(String empleado) {
+        return repository.findByEmpleado_IdOrderByFechaDesc(empleado);
     }
 
     @Override

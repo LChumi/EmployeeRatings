@@ -41,4 +41,8 @@ public class Calificacion  implements Serializable {
     public Calificacion() {
         this.hora = LocalTime.now();
     }
+
+    public void registerHour(){
+        this.hora= LocalTime.now();
+    }
 }
