@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +33,13 @@ public class CalificacionRepositoryCustom {
 
         if (fechaInicio != null && fechaFin != null) {
             filters.add(Criteria.where("fecha").gte(fechaInicio).lte(fechaFin));
-        } else if (fechaInicio != null) {
-            filters.add(Criteria.where("fecha").gte(fechaInicio));
-        } else if (fechaFin != null) {
-            filters.add(Criteria.where("fecha").lte(fechaFin));
+        }
+
+        if (fechaInicio != null) {
+            LocalDateTime startOfDay = fechaInicio.atStartOfDay(); // 2025-03-24T00:00:00
+            LocalDateTime endOfDay = fechaInicio.atTime(LocalTime.MAX); // 2025-03-24T23:59:59
+
+            filters.add(Criteria.where("fecha").gte(startOfDay).lt(endOfDay));
         }
 
         Query query = new Query();
