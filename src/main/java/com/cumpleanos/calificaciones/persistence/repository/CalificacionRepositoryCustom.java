@@ -32,12 +32,12 @@ public class CalificacionRepositoryCustom {
         }
 
         if (fechaInicio != null && fechaFin != null) {
+            // Si ambas fechas están presentes, filtra entre ellas
             filters.add(Criteria.where("fecha").gte(fechaInicio).lte(fechaFin));
-        }
-
-        if (fechaInicio != null) {
-            LocalDateTime startOfDay = fechaInicio.atStartOfDay(); // 2025-03-24T00:00:00
-            LocalDateTime endOfDay = fechaInicio.atTime(LocalTime.MAX); // 2025-03-24T23:59:59
+        } else if (fechaInicio != null) {
+            // Si solo existe fechaInicio, busca por ese día
+            LocalDateTime startOfDay = fechaInicio.atStartOfDay(); // Ejemplo: 2025-03-24T00:00:00
+            LocalDateTime endOfDay = fechaInicio.atTime(LocalTime.MAX); // Ejemplo: 2025-03-24T23:59:59
 
             filters.add(Criteria.where("fecha").gte(startOfDay).lt(endOfDay));
         }
