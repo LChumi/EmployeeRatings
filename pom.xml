@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cumpleanos</groupId>
-	<artifactId>calificaciones</artifactId>
+	<artifactId>mongo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>calificaciones</name>
-	<description>Employee ratings and performance</description>
+	<name>mongo</name>
+	<description>Services that use Mongo DB as their main database</description>
 	<url/>
 	<licenses>
 		<license/>
