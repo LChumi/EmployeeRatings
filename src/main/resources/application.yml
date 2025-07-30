@@ -5,3 +5,9 @@ spring:
     name: calificaciones
   config:
     import: classpath:/mongo_secure.yml
+
+info:
+  app:
+    name: mongo-service
+    description: Gestion de servicios con mongo
+    version: 1.0

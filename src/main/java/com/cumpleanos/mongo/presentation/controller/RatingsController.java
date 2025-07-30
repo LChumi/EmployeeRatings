@@ -2,6 +2,9 @@ package com.cumpleanos.mongo.presentation.controller;
 
 import com.cumpleanos.mongo.persistence.entities.Calificacion;
 import com.cumpleanos.mongo.service.interfaces.ICalificacionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +31,8 @@ public class RatingsController {
         return ResponseEntity.ok(calificaciones);
     }
 
+    @Operation(summary = "Lista las calificaciones por empleado")
+    @Parameter(name = "empleado", description = "ID del empleado" , in = ParameterIn.HEADER, required = true)
     @GetMapping("/all/employee/{empleado}")
     public ResponseEntity<List<Calificacion>> getAllEmployee(@PathVariable String empleado) {
         List<Calificacion> calificaciones = service.listByEmpleado(empleado);
